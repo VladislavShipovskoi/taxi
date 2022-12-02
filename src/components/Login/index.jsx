@@ -5,7 +5,7 @@ import '../../App.css';
 
 
 const Login = (props) => {
-    const {onNavigate} = props
+    const {onNavigate, logIn} = props
 
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
@@ -16,7 +16,7 @@ const Login = (props) => {
 
     const handleSubmitForm = (event) => {
         event.preventDefault()
-        onNavigate("map")
+        logIn(email, password)
     }
 
     const handleChangeEmail = (event) => {
