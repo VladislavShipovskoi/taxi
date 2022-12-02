@@ -1,9 +1,12 @@
 import React from "react";
-import '../App.css';
+import '../../App.css';
 
 
-export const  Map = () => {
+const  Map = () => {
+
     return (
         <div>Map</div>
     )
 }
+
+export default Map

@@ -1,10 +1,10 @@
 import React, {useState} from "react";
-import {ReactComponent as LoftTaxiLogo} from "../assets/loftTaxiLogo.svg";
+import {ReactComponent as LoftTaxiLogo} from "../../assets/images/loftTaxiLogo.svg";
 import {TextField} from "@mui/material";
-import '../App.css';
+import '../../App.css';
 
 
-export const  Registration = (props) => {
+const Registration = (props) => {
     const {onNavigate} = props
 
     const [email, setEmail] = useState('')
@@ -56,3 +56,5 @@ export const  Registration = (props) => {
         </div>
     )
 }
+
+export default Registration

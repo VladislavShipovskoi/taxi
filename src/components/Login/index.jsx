@@ -1,11 +1,11 @@
 import React, {useState} from "react";
-import {ReactComponent as LoftTaxiLogo} from '../assets/loftTaxiLogo.svg';
+import {ReactComponent as LoftTaxiLogo} from '../../assets/images/loftTaxiLogo.svg';
 import {TextField} from "@mui/material";
-import '../App.css';
+import '../../App.css';
 
 
-export const Login = (props) => {
-    const { onNavigate } = props
+const Login = (props) => {
+    const {onNavigate} = props
 
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
@@ -50,3 +50,5 @@ export const Login = (props) => {
         </div>
     )
 }
+
+export default Login

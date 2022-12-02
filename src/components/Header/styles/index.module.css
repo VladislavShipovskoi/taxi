@@ -1,0 +1,26 @@
+.header {
+    height: 102px;
+    background: #1C1A19;
+    display: flex;
+    padding: 20px 50px;
+    justify-content: space-between;
+}
+
+.headerLinksContainer {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 20px;
+}
+
+.headerLink {
+    font-weight: 400;
+    font-size: 21px;
+    line-height: 25px;
+    color: #FFFFFF;
+    cursor: pointer;
+}
+
+.headerLinkActive {
+    color: #FDBF5A;
+}

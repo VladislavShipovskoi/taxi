@@ -6,33 +6,6 @@ div, header, form {
   box-sizing: border-box;
 }
 
-.header {
-  height: 102px;
-  background: #1C1A19;
-  display: flex;
-  padding: 20px 50px;
-  justify-content: space-between;
-}
-
-.header-links-container {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  gap: 20px;
-}
-
-.header-link {
-  font-weight: 400;
-  font-size: 21px;
-  line-height: 25px;
-  color: #FFFFFF;
-  cursor: pointer;
-}
-
-.header-link-active {
-  color: #FDBF5A;
-}
-
 .page {
   height: 100vh;
   display: flex;
@@ -51,7 +24,7 @@ div, header, form {
   align-items: center;
   justify-content: center;
   flex-grow: 1;
-  background-image: url("/src/assets/map.jpg");
+  background-image: url("/src/assets/images/map.jpg");
 }
 
 .form-container {

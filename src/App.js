@@ -1,15 +1,15 @@
-import React, {Fragment, useState} from 'react'
-import {Header} from './components/Header'
-import {Profile} from './components/Profile'
-import {Login} from './components/Login'
-import {Registration} from './components/Registration'
-import {Map} from "./components/Map";
+import React, {useState} from 'react'
+import Profile from './components/Profile/index'
+import Login from './components/Login/index'
+import Registration from './components/Registration/index'
+import Map from "./components/Map/index";
+import WrapperComponent from "./components/wrapperComponent";
 import './App.css';
 
 
 const App = () => {
 
-    const [currentPage, setCurrentPage] = useState('home')
+    const [currentPage, setCurrentPage] = useState('')
 
     const navigateTo = (page) => {
         setCurrentPage(page)
@@ -18,23 +18,22 @@ const App = () => {
     const customRouter = (page) => {
         switch (page) {
             case "map":
-                return <Map />;
+                return <Map onNavigate={navigateTo} />;
             case "profile":
-                return <Profile />;
+                return <Profile onNavigate={navigateTo} />;
             case "login":
                 return <Login onNavigate={navigateTo} />;
             case "registration":
                 return <Registration onNavigate={navigateTo} />;
             default:
-                return <Map />
+                return <div />
         }
     }
 
     return (
-        <Fragment>
-            {!["login", "registration"].includes(currentPage) && <Header onNavigate={navigateTo} currentPage={currentPage} />}
+        <WrapperComponent currentPage={currentPage} navigateTo={navigateTo}>
             {customRouter(currentPage)}
-        </Fragment>
+        </WrapperComponent>
     )
 }
 
