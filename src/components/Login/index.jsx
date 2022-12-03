@@ -2,6 +2,8 @@ import React, {useState} from "react";
 import {ReactComponent as LoftTaxiLogo} from '../../assets/images/loftTaxiLogo.svg';
 import {TextField} from "@mui/material";
 import '../../App.css';
+import PropTypes from "prop-types";
+import Header from "../Header";
 
 
 const Login = (props) => {
@@ -49,6 +51,11 @@ const Login = (props) => {
             </div>
         </div>
     )
+}
+
+Header.propTypes = {
+    onNavigate: PropTypes.func.isRequired,
+    logIn: PropTypes.func.isRequired,
 }
 
 export default Login

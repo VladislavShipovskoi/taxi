@@ -1,4 +1,6 @@
 import React from "react";
+import PropTypes from 'prop-types';
+
 import {ReactComponent as LoftTaxiLogo} from '../../assets/images/loftTaxiLogo2.svg';
 import styles from './styles/index.module.css'
 
@@ -22,6 +24,13 @@ const Header = (props) => {
             </div>
         </header>
     )
+}
+
+Header.propTypes = {
+    onNavigate: PropTypes.func.isRequired,
+    logOut: PropTypes.func.isRequired,
+    currentPage: PropTypes.string.isRequired,
+    isLoggedIn: PropTypes.bool.isRequired,
 }
 
 export default Header

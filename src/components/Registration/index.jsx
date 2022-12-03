@@ -2,6 +2,8 @@ import React, {useState} from "react";
 import {ReactComponent as LoftTaxiLogo} from "../../assets/images/loftTaxiLogo.svg";
 import {TextField} from "@mui/material";
 import '../../App.css';
+import Header from "../Header";
+import PropTypes from "prop-types";
 
 
 const Registration = (props) => {
@@ -55,6 +57,10 @@ const Registration = (props) => {
             </div>
         </div>
     )
+}
+
+Header.propTypes = {
+    onNavigate: PropTypes.func.isRequired,
 }
 
 export default Registration
