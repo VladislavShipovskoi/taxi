@@ -1,9 +1,8 @@
 import React, {useState} from "react";
 import {ReactComponent as LoftTaxiLogo} from '../../assets/images/loftTaxiLogo.svg';
 import {TextField} from "@mui/material";
-import '../../App.css';
 import PropTypes from "prop-types";
-import Header from "../Header";
+import '../../App.css';
 
 
 const Login = (props) => {
@@ -38,8 +37,8 @@ const Login = (props) => {
                 <form onSubmit={handleSubmitForm} className="form-container">
                     <div className="form-body">
                         <div className="title">Войти</div>
-                        <TextField required type="email" id="email" value={email} onChange={handleChangeEmail} label="Email" variant="standard" margin="normal" />
-                        <TextField required  type="password" id="password" value={password} onChange={handleChangePassword} label="Пароль" variant="standard" margin="normal" />
+                        <TextField data-testid={"email-input"} required type="email" id="email" value={email} onChange={handleChangeEmail} label="Email" variant="standard" margin="normal" />
+                        <TextField data-testid={"password-input"} required  type="password" id="password" value={password} onChange={handleChangePassword} label="Password" variant="standard" margin="normal" />
                         <div className="forgot-password">Забыли пароль?</div>
                         <button className={`custom-button ${(!email.length || !password.length) && 'disabled'}`} type="submit">Войти</button>
                         <div className="link-wrapper">
@@ -53,7 +52,7 @@ const Login = (props) => {
     )
 }
 
-Header.propTypes = {
+Login.propTypes = {
     onNavigate: PropTypes.func.isRequired,
     logIn: PropTypes.func.isRequired,
 }
