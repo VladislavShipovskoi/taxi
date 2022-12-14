@@ -5,7 +5,7 @@ import styles from "./styles/index.module.css";
 import '../../App.css';
 
 
-const  Map = () => {
+const  Map = (props) => {
     const mapContainer = useRef(null);
     const map = useRef(null);
 

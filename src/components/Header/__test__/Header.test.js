@@ -1,28 +1,38 @@
 import React from "react";
-import {render, screen} from "@testing-library/react";
+import {screen} from "@testing-library/react";
 import Header from "../index";
+import {createMemoryHistory} from "history";
+import {Router} from "react-router-dom";
+import {renderWithProviders} from "../../../testUtils";
 
 
-describe('test', () => {
+describe('Header', () => {
 
     it('render Header correctly', () => {
-        render(<Header currentPage={"map"} onNavigate={() => {}} isLoggedIn={false} logOut={() => {}} />);
+        const history = createMemoryHistory();
+
+        renderWithProviders(
+            <Router location={history.location} navigator={history}>
+                <Header />
+            </Router>
+        )
     })
 
     it('should have all links', () => {
-        render(<Header  currentPage={"map"} onNavigate={() => {}} isLoggedIn={false} logOut={() => {}}/>);
+        const history = createMemoryHistory();
+
+        renderWithProviders(
+            <Router location={history.location} navigator={history}>
+                <Header />
+            </Router>
+        )
+
         const mapLink = screen.getByText("Карта");
         const profileLink = screen.getByText("Профиль");
-        const logInLink = screen.getByText("Войти");
+        const logInLink = screen.getByText("Выйти");
 
         expect(mapLink).toBeInTheDocument();
         expect(profileLink).toBeInTheDocument();
         expect(logInLink).toBeInTheDocument();
-    })
-
-    it('should display logout link if isLoggedIn is true', () => {
-        render(<Header  currentPage={"map"} onNavigate={() => {}} isLoggedIn={true} logOut={() => {}}/>);
-        const logOutLink = screen.getByText("Выйти");
-        expect(logOutLink).toBeInTheDocument();
     })
 })

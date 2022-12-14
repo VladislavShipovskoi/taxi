@@ -1,17 +1,35 @@
 import React from "react";
-import {fireEvent, render, screen} from "@testing-library/react";
-import {AuthContext, AuthProvider} from "../../authContext"
+import {fireEvent, screen} from "@testing-library/react";
 import Login from "../index";
+import {renderWithProviders} from "../../../testUtils";
+import {Router} from "react-router-dom";
+import {createMemoryHistory} from "history";
+import {serverLogin} from "../../../api";
 
+
+jest.mock("../../../api", () => ({serverLogin: jest.fn(() => Promise.resolve(true))}))
 
 describe("Login", () => {
 
     it('renders correctly', () => {
-        render(<Login  logIn={jest.fn()} onNavigate={jest.fn()}/>);
+        const history = createMemoryHistory();
+
+        renderWithProviders(
+            <Router location={history.location} navigator={history}>
+                <Login />
+            </Router>
+        )
     });
 
     it('correct form', () => {
-        render(<Login  logIn={jest.fn()} onNavigate={jest.fn()}/>);
+        const history = createMemoryHistory();
+
+        renderWithProviders(
+            <Router location={history.location} navigator={history}>
+                <Login />
+            </Router>
+        )
+
         const inputEmail = screen.getByLabelText(/^email/i)
         const inputPassword = screen.getByLabelText(/^password/i)
         const logInButton = screen.getByRole("button", {name: "Войти"});
@@ -20,54 +38,25 @@ describe("Login", () => {
         expect(logInButton).toBeInTheDocument();
     });
 
-    it('work correctly', () => {
-        let isLoggedIn;
-        let logIn;
+    it('work correctly', async () => {
+        const history = createMemoryHistory();
 
-        render(
-            <AuthProvider>
-                <AuthContext.Consumer>
-                    {(value) => {
-                        isLoggedIn = value.isLoggedIn
-                        logIn = value.logIn
-                        return <Login  logIn={logIn} isLoggedIn={isLoggedIn} onNavigate={jest.fn()}/>
-                    }}
-                </AuthContext.Consumer>
-            </AuthProvider>
-        );
+        const { store } = renderWithProviders(
+            <Router location={history.location} navigator={history}>
+                <Login />
+            </Router>
+        )
+
         const inputEmail = screen.getByLabelText(/^email/i)
         const inputPassword = screen.getByLabelText(/^password/i)
         const logInButton = screen.getByRole("button", {name: "Войти"});
-        expect(isLoggedIn).toBe(false)
-        fireEvent.change(inputEmail, { target: { value: "email@test.com" } })
-        fireEvent.change(inputPassword, { target: { value: "test" } })
+
+        expect(store.getState().auth.isLoggedIn).toBe(false)
+
+        fireEvent.change(inputEmail, { target: { value: "test@test.com" } })
+        fireEvent.change(inputPassword, { target: { value: "123123" } })
         fireEvent.click(logInButton)
-        expect(isLoggedIn).toBe(true)
+
+        expect(serverLogin).toBeCalledWith("test@test.com", "123123")
     });
-
-    it('work incorrectly', () => {
-        let isLoggedIn;
-        let logIn;
-
-        render(
-            <AuthProvider>
-                <AuthContext.Consumer>
-                    {(value) => {
-                        isLoggedIn = value.isLoggedIn
-                        logIn = value.logIn
-                        return <Login  logIn={logIn} isLoggedIn={isLoggedIn} onNavigate={jest.fn()}/>
-                    }}
-                </AuthContext.Consumer>
-            </AuthProvider>
-        );
-        const inputEmail = screen.getByLabelText(/^email/i)
-        const inputPassword = screen.getByLabelText(/^password/i)
-        const logInButton = screen.getByRole("button", {name: "Войти"});
-        expect(isLoggedIn).toBe(false)
-        fireEvent.change(inputEmail, { target: { value: "email@test.com" } })
-        fireEvent.change(inputPassword, { target: { value: "test123" } })
-        fireEvent.click(logInButton)
-        expect(isLoggedIn).toBe(false)
-    });
-
 });
