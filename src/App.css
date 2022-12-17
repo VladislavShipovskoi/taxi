@@ -28,17 +28,20 @@ div, header, form {
 }
 
 .form-container {
-  width: 580px;
   background: #FFFFFF;
   box-shadow: 0 0 40px rgba(0, 0, 0, 0.1);
   border-radius: 20px;
+  padding: 56px 113px 55px 112px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .form-body {
   height: 100%;
   display: flex;
   flex-direction: column;
-  padding: 56px 113px 55px 112px;
 }
 
 .form-body > .title,

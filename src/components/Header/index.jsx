@@ -1,36 +1,36 @@
 import React from "react";
-import PropTypes from 'prop-types';
+import { logout} from "../../actions/authActions";
+import {connect} from "react-redux";
+import {Link, useLocation} from "react-router-dom";
 
 import {ReactComponent as LoftTaxiLogo} from '../../assets/images/loftTaxiLogo2.svg';
 import styles from './styles/index.module.css'
 
 
 const Header = (props) => {
-    const {onNavigate, currentPage, isLoggedIn, logOut} = props
+    const {logout} = props
+    let location = useLocation();
 
     return (
         <header className={styles.header}>
             <LoftTaxiLogo />
             <div className={styles.headerLinksContainer}>
-                <div className={`${styles.headerLink} ${currentPage === "map" && styles.headerLinkActive}`} onClick={() => {onNavigate("map")}}>Карта</div>
-                <div className={`${styles.headerLink} ${currentPage === "profile" && styles.headerLinkActive}`} onClick={() => {onNavigate("profile")}}>Профиль</div>
-                {
-                    isLoggedIn ? (
-                        <div className={`${styles.headerLink} ${currentPage === "login" && styles.headerLinkActive}`} onClick={logOut}>Выйти</div>
-                    ) : (
-                        <div className={`${styles.headerLink} ${currentPage === "login" && styles.headerLinkActive}`} onClick={() => {onNavigate("login")}}>Войти</div>
-                    )
-                }
+                <Link to={'/'} className={`${location.pathname === "/" ? `${styles.headerLink} ${styles.headerLinkActive}` : styles.headerLink}`}>
+                    Карта
+                </Link>
+                <Link to={'/profile'} className={`${location.pathname === "/profile" ? `${styles.headerLink} ${styles.headerLinkActive}` : styles.headerLink}`}>
+                    Профиль
+                </Link>
+                <div className={`${styles.headerLink}`} onClick={logout}>Выйти</div>
             </div>
         </header>
     )
 }
 
-Header.propTypes = {
-    onNavigate: PropTypes.func.isRequired,
-    logOut: PropTypes.func.isRequired,
-    currentPage: PropTypes.string.isRequired,
-    isLoggedIn: PropTypes.bool.isRequired,
+const mapDispatchToProps = (dispatch) => {
+    return {
+        logout: () => dispatch(logout())
+    }
 }
 
-export default Header
+export default connect(null, mapDispatchToProps)(Header);

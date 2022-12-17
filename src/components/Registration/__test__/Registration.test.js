@@ -1,16 +1,31 @@
 import React from "react";
-import { render, screen } from "@testing-library/react";
+import { screen } from "@testing-library/react";
 import Registration from "../index";
+import {createMemoryHistory} from "history";
+import {renderWithProviders} from "../../../testUtils";
+import {Router} from "react-router-dom";
 
 
 describe("Registration", () => {
 
     it('renders correctly', () => {
-        render(<Registration  logIn={jest.fn()} onNavigate={jest.fn()}/>);
+        const history = createMemoryHistory();
+
+        renderWithProviders(
+            <Router location={history.location} navigator={history}>
+                <Registration />
+            </Router>
+        )
     });
 
     it('correct form', () => {
-        render(<Registration  logIn={jest.fn()} onNavigate={jest.fn()}/>);
+        const history = createMemoryHistory();
+
+        renderWithProviders(
+            <Router location={history.location} navigator={history}>
+                <Registration />
+            </Router>
+        )
 
         const inputEmail = screen.getByLabelText(/^email/i)
         const inputName = screen.getByLabelText(/^name/i)
