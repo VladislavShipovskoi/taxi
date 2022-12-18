@@ -4,12 +4,16 @@ import Login from "../index";
 import {renderWithProviders} from "../../../testUtils";
 import {Router} from "react-router-dom";
 import {createMemoryHistory} from "history";
-import {serverLogin} from "../../../api";
+import * as api from "../../../features/Auth/api";
 
-
-jest.mock("../../../api", () => ({serverLogin: jest.fn(() => Promise.resolve(true))}))
 
 describe("Login", () => {
+
+    api.signIn = jest.fn();
+    beforeEach(() => {
+        jest.resetAllMocks();
+    });
+
 
     it('renders correctly', () => {
         const history = createMemoryHistory();
@@ -39,6 +43,9 @@ describe("Login", () => {
     });
 
     it('work correctly', async () => {
+        api.signIn.mockImplementation(() => {
+            return { success: true }
+        });
         const history = createMemoryHistory();
 
         const { store } = renderWithProviders(
@@ -57,6 +64,6 @@ describe("Login", () => {
         fireEvent.change(inputPassword, { target: { value: "123123" } })
         fireEvent.click(logInButton)
 
-        expect(serverLogin).toBeCalledWith("test@test.com", "123123")
+        expect(api.signIn).toBeCalledWith("test@test.com", "123123")
     });
 });

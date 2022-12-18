@@ -2,9 +2,7 @@ import React, {useState} from "react";
 import {TextField} from "@mui/material";
 import {connect} from "react-redux";
 import {Link, Navigate} from "react-router-dom";
-
-import {authenticate} from "../../actions/authActions";
-
+import { authenticateRequest } from "../../features/Auth/actions";
 import {ReactComponent as LoftTaxiLogo} from '../../assets/images/loftTaxiLogo.svg';
 import styles from "./styles/Login.module.css"
 import '../../App.css';
@@ -29,7 +27,6 @@ const Login = (props) => {
     }
 
     return (
-
         !isLoggedIn ? (
             <div className="page">
                 <div className="left-side">
@@ -65,7 +62,7 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        authenticate: (email, password) => dispatch(authenticate(email, password)),
+        authenticate: (email, password) => dispatch(authenticateRequest({email, password})),
     }
 }
 

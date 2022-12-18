@@ -1,5 +1,5 @@
 import React from "react";
-import { logout} from "../../actions/authActions";
+import { logOut} from "../../features/Auth/actions";
 import {connect} from "react-redux";
 import {Link, useLocation} from "react-router-dom";
 
@@ -29,7 +29,7 @@ const Header = (props) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        logout: () => dispatch(logout())
+        logout: () => dispatch(logOut())
     }
 }
 

@@ -1,5 +1,5 @@
-import * as actions from '../../actions/authActions';
-import reducer, {initialState} from '../auth';
+import reducer, {initialState} from '../reducer';
+import {authenticateSuccess, logOut} from "../actions";
 
 
 describe("Auth Reducer", () => {
@@ -8,9 +8,12 @@ describe("Auth Reducer", () => {
         expect(reducer(undefined, {})).toEqual(initialState);
     });
 
-    it('should handle LOG_IN', () => {
+    it('should handle AUTHENTICATE_SUCCESS', () => {
         const loginAction = {
-            type: actions.LOG_IN
+            type: authenticateSuccess.toString(),
+            payload: {
+                success: true
+            }
         };
         expect(reducer({}, loginAction)).toEqual({
             isLoggedIn: true
@@ -19,10 +22,11 @@ describe("Auth Reducer", () => {
 
     it('should handle LOG_OUT', () => {
         const loginAction = {
-            type: actions.LOG_OUT
+            type: logOut.toString()
         };
         expect(reducer({}, loginAction)).toEqual({
-            isLoggedIn: false
+            isLoggedIn: false,
+            token: "",
         });
     });
 });
