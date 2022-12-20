@@ -2,35 +2,32 @@ import React from  "react";
 import { useFormik } from 'formik';
 import {Link} from "react-router-dom";
 import {TextField} from "@mui/material";
-import {useDispatch} from "react-redux";
-import {authenticateRequest} from "../../../features/Auth/actions";
 import styles from "./styles/index.module.css";
 import '../../../App.css';
 
 
-export const LoginForm = () => {
-
-    const dispatch = useDispatch();
-
+export const LoginForm = ({ onSubmit }) => {
     const formik = useFormik({
         initialValues: {
             email: '',
             password: ''
         },
-        onSubmit: data => {
-            dispatch(authenticateRequest(data))
-        },
     });
+
+    const handleSubmit = (event) => {
+        event.preventDefault()
+        onSubmit(formik.values)
+    }
 
     return (
         <div className="form-container">
-            <form onSubmit={formik.handleSubmit}>
+            <form onSubmit={handleSubmit}>
                 <div className={`form-body ${styles.loginFormBody}`}>
                     <div className="title">Войти</div>
 
                     <TextField
                         fullWidth
-                        required
+                        // required
                         id="email"
                         name="email"
                         label="Email"
@@ -46,7 +43,7 @@ export const LoginForm = () => {
 
                     <TextField
                         fullWidth
-                        required
+                        // required
                         id="password"
                         name="password"
                         label="Password"
@@ -61,7 +58,7 @@ export const LoginForm = () => {
                     />
 
                     <div className="forgot-password">Забыли пароль?</div>
-                    <button className={`custom-button ${styles.loginButton} ${(!formik.values.email.length || !formik.values.password.length) && 'disabled'}`} type="submit">Войти</button>
+                    <button data-testid="login-button" className={`custom-button ${styles.loginButton} ${(!formik.values.email.length || !formik.values.password.length) ? 'disabled' : ''}`} type="submit">Войти</button>
                     <div className="link-wrapper">
                         <span>Новый пользователь? </span>
                         <Link to={"/registration"}>

@@ -4,9 +4,10 @@ import {Navigate} from "react-router-dom";
 import {ReactComponent as LoftTaxiLogo} from '../../assets/images/loftTaxiLogo.svg';
 import '../../App.css';
 import {LoginForm} from "./forms/LoginForm";
+import {authenticateRequest} from "../../features/Auth/actions";
 
 
-const Login = ({ isLoggedIn }) => {
+const Login = ({ isLoggedIn, authenticate }) => {
 
     return (
         !isLoggedIn ? (
@@ -15,7 +16,9 @@ const Login = ({ isLoggedIn }) => {
                     <LoftTaxiLogo />
                 </div>
                 <div className="right-side">
-                    <LoginForm />
+                    <LoginForm onSubmit={({email, password}) => {
+                        authenticate(email, password)
+                    }} />
                 </div>
             </div>
         ) : (
@@ -28,4 +31,10 @@ const mapStateToProps = (state) => ({
     isLoggedIn: state.auth.isLoggedIn
 })
 
-export default connect(mapStateToProps, null)(Login);
+const mapDispatchToProps = (dispatch) => {
+    return {
+        authenticate: (email, password) => dispatch(authenticateRequest({email, password})),
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Login);

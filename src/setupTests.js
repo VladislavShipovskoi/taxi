@@ -1,4 +1,5 @@
 import '@testing-library/jest-dom';
+import 'mutationobserver-shim'
 
 export const mockMapOn = jest.fn();
 export const mockMapRemove = jest.fn();

@@ -25,24 +25,7 @@ describe("Login", () => {
         )
     });
 
-    it('correct form', () => {
-        const history = createMemoryHistory();
-
-        renderWithProviders(
-            <Router location={history.location} navigator={history}>
-                <Login />
-            </Router>
-        )
-
-        const inputEmail = screen.getByLabelText(/^email/i)
-        const inputPassword = screen.getByLabelText(/^password/i)
-        const logInButton = screen.getByRole("button", {name: "Войти"});
-        expect(inputEmail).toBeInTheDocument();
-        expect(inputPassword).toBeInTheDocument();
-        expect(logInButton).toBeInTheDocument();
-    });
-
-    it('work correctly', async () => {
+    it('login through api', async () => {
         api.signIn.mockImplementation(() => {
             return { success: true }
         });
