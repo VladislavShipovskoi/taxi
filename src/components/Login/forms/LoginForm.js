@@ -3,9 +3,9 @@ import { useFormik } from 'formik';
 import {Link} from "react-router-dom";
 import {TextField} from "@mui/material";
 import {useDispatch} from "react-redux";
-import styles from "../styles/Login.module.css";
-import '../../../App.css';
 import {authenticateRequest} from "../../../features/Auth/actions";
+import styles from "./styles/index.module.css";
+import '../../../App.css';
 
 
 export const LoginForm = () => {
