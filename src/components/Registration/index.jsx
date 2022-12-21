@@ -4,9 +4,10 @@ import {Navigate} from "react-router-dom";
 import {connect} from "react-redux";
 import {RegistrationForm} from "./forms/RegistrationForm";
 import '../../App.css';
+import {registrationRequest} from "../../features/Registration/actions";
 
 
-const Registration = ({ isLoggedIn }) => {
+const Registration = ({ isLoggedIn, registration }) => {
 
     return (
         !isLoggedIn ? (
@@ -15,7 +16,9 @@ const Registration = ({ isLoggedIn }) => {
                     <LoftTaxiLogo />
                 </div>
                 <div className="right-side">
-                    <RegistrationForm />
+                    <RegistrationForm onSubmit={({ email, password, name, surname}) => {
+                        registration(email, password, name, surname)
+                    }} />
                 </div>
             </div>
         ) : (
@@ -28,4 +31,10 @@ const mapStateToProps = (state) => ({
     isLoggedIn: state.auth.isLoggedIn
 })
 
-export default connect(mapStateToProps, null)(Registration);
+const mapDispatchToProps = (dispatch) => {
+    return {
+        registration: (email, password, name, surname) => dispatch(registrationRequest({email, password, name, surname})),
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Registration);

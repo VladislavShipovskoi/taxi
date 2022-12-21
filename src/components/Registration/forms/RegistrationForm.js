@@ -2,15 +2,11 @@ import React from  "react";
 import { useFormik } from 'formik';
 import {Link} from "react-router-dom";
 import {TextField} from "@mui/material";
-import {useDispatch} from "react-redux";
-import {registrationRequest} from "../../../features/Registration/actions";
 import styles from "./styles/index.module.css";
 import '../../../App.css';
 
 
-export const RegistrationForm = () => {
-
-    const dispatch = useDispatch();
+export const RegistrationForm = ({ onSubmit }) => {
 
     const formik = useFormik({
         initialValues: {
@@ -19,20 +15,21 @@ export const RegistrationForm = () => {
             surname: '',
             password: '',
         },
-        onSubmit: data => {
-            dispatch(registrationRequest(data))
-        },
     });
+
+    const handleSubmit = (event) => {
+        event.preventDefault()
+        onSubmit(formik.values)
+    }
 
     return (
         <div className="form-container">
-            <form onSubmit={formik.handleSubmit}>
+            <form onSubmit={handleSubmit}>
                 <div className={`form-body ${styles.registrationFormBody}`}>
                     <div className="title">Регистрация</div>
 
                     <TextField
                         fullWidth
-                        required
                         id="email"
                         name="email"
                         label="Email"
@@ -48,7 +45,6 @@ export const RegistrationForm = () => {
 
                     <TextField
                         fullWidth
-                        required
                         id="name"
                         name="name"
                         label="Name"
@@ -63,7 +59,6 @@ export const RegistrationForm = () => {
 
                     <TextField
                         fullWidth
-                        required
                         id="surname"
                         name="surname"
                         label="Surname"
@@ -78,7 +73,6 @@ export const RegistrationForm = () => {
 
                     <TextField
                         fullWidth
-                        required
                         id="password"
                         name="password"
                         label="Password"
