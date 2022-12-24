@@ -1,5 +1,4 @@
 import React from "react";
-import {screen} from "@testing-library/react";
 import {renderWithProviders} from "../../../testUtils";
 import {Router} from "react-router-dom";
 import {createMemoryHistory} from "history";
