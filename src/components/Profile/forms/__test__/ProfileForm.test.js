@@ -71,12 +71,12 @@ describe("ProfileForm", () => {
         await waitFor(() => {
 
             const splitValues = '10/24'.split('/')
-            const test = dayjs(`${splitValues[0]}-1-${splitValues[1]}`).toISOString()
+            const date = dayjs(`${splitValues[0]}-1-${splitValues[1]}`).toISOString()
 
             expect(handleSubmit).toHaveBeenCalledWith({
                 cardName: "name",
                 cardNumber: "0000000000000000",
-                expiryDate: test,
+                expiryDate: date,
                 cvc: "000",
             })
         })
