@@ -28,7 +28,6 @@ export const LoginForm = ({ onSubmit }) => {
 
                     <TextField
                         fullWidth
-                        // required
                         id="email"
                         name="email"
                         label="Email"
@@ -44,7 +43,6 @@ export const LoginForm = ({ onSubmit }) => {
 
                     <TextField
                         fullWidth
-                        // required
                         id="password"
                         name="password"
                         label="Password"
