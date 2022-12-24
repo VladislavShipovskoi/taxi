@@ -1,42 +1,19 @@
 import React, {useState} from "react";
 import {connect} from "react-redux";
 import styles from "./styles/index.module.css";
-import {Autocomplete, TextField} from "@mui/material";
 import {clearRoute, getRouteRequest} from "../../features/Routes/actions";
 import { useNavigate } from "react-router-dom";
+import {OrderForm} from "./forms/OrderForm";
 import '../../App.css';
-
-
-const PLANS = [
-    {
-        id: 1,
-        name: 'Стандарт',
-        price: 150
-    },
-    {
-        id: 2,
-        name: 'Премиум',
-        price: 250
-    },
-    {
-        id: 3,
-        name: 'Бизнес',
-        price: 300
-    }
-]
 
 
 const Order = (props) => {
     const {addressList, cardInfo, getRoute, clearRoute} = props;
-
-    const [fromAddress, setFromAddress] = useState(addressList[0]);
-    const [toAddress, setToAddress] = useState(addressList[1]);
     const [order, setOrder] = useState(false);
-    const [activePlan, setActivePlan] = useState(PLANS[0].id);
 
 
-    const handleOrderClick = () => {
-        getRoute(fromAddress, toAddress)
+    const handleSubmit = (address) => {
+        getRoute(address.fromAddress, address.toAddress)
         setOrder(true)
     }
 
@@ -48,50 +25,7 @@ const Order = (props) => {
                 (cardInfo) ? (
                     !order ? (
                         <React.Fragment>
-                            <div className={styles.inputsContainer}>
-                                <Autocomplete
-                                    disablePortal
-                                    id="fromAddress"
-                                    value={fromAddress}
-                                    onChange={(event, newValue) => {
-                                        setFromAddress(newValue);
-                                    }}
-                                    options={addressList.filter((address) => address !== toAddress)}
-                                    renderInput={(params) => <TextField {...params} label="Откуда" />}
-                                />
-                                <Autocomplete
-                                    disablePortal
-                                    id="toAddress"
-                                    value={toAddress}
-                                    onChange={(event, newValue) => {
-                                        setToAddress(newValue);
-                                    }}
-                                    options={addressList.filter((address) => address !== fromAddress)}
-                                    renderInput={(params) => <TextField {...params} label="Куда" />}
-                                />
-                            </div>
-
-                            <div className={styles.carForm}>
-                                <div className={styles.carContainer}>
-                                    {
-                                        PLANS.map((plan, index) => {
-                                            return (
-                                                <div className={`${styles.car} ${plan.id === activePlan ? styles.planActive : ''}`} key={`plan-${index}`} onClick={() => {
-                                                    setActivePlan(plan.id)
-                                                }}>
-                                                    <div className={styles.planName}>{plan.name}</div>
-                                                    <div className={styles.planPriceLabel}>Стоимость</div>
-                                                    <div className={styles.planPrice}>{`${plan.price} ₽`}</div>
-                                                    <div className={styles.standardPlan} />
-                                                </div>
-                                            )
-                                        })
-                                    }
-                                </div>
-
-                                <button className={`custom-button ${((fromAddress && !fromAddress.length) || (toAddress && !toAddress.length)) && 'disabled'}`} type="submit" onClick={handleOrderClick}>Заказать</button>
-                            </div>
-
+                            <OrderForm onSubmit={handleSubmit} addressList={addressList} />
                         </React.Fragment>
                     ) : (
                             <div className="containerWithPadding">
