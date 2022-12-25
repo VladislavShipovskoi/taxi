@@ -1,0 +1,114 @@
+.saveButton {
+    width: 353px !important;
+    margin-top: 40px !important;
+}
+
+.innerBody {
+    display: flex;
+    align-items: center;
+    gap: 100px;
+}
+
+.leftSide {
+    width: 355px;
+    display: flex;
+    flex-direction: column;
+}
+
+.cardDateAndCVC {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    gap: 20px;
+}
+
+.cardLogo1 {
+    height: 33px;
+    width: 33px;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-image: url("/src/assets/images/cardLogo1.svg");
+}
+
+.cardLogo2 {
+    height: 27px;
+    width: 27px;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-image: url("/src/assets/images/cardLogo2.svg");
+}
+
+.cardLogo3wrapper {
+    position: relative;
+    display: flex;
+    align-items: end;
+    height: 27px;
+    width: 60px;
+}
+
+.cardLogo3_1 {
+    position: absolute;
+    top: 0;
+    right: 0;
+    height: 28px;
+    width: 28px;
+    border-radius: 15px;
+    background: #F1F1F1;
+    mix-blend-mode: multiply;
+    /*background-repeat: no-repeat;*/
+    /*background-position: center;*/
+    /*background-image: url("/src/assets/images/cardEllipse.svg");*/
+}
+
+.cardLogo3_2 {
+    height: 28px;
+    width: 28px;
+    position: absolute;
+    top: 0;
+    right: 18px;
+    border-radius: 15px;
+    background: #F1F1F1;
+    mix-blend-mode: multiply;
+    /*background-repeat: no-repeat;*/
+    /*background-position: center;*/
+    /*background-image: url("/src/assets/images/cardEllipse.svg");*/
+}
+
+.rightSide {
+    width: 347px;
+    height: 182px;
+    background: #FFFFFF;
+    box-shadow: 0 5px 20px 2px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+
+    padding: 18px 28px;
+}
+
+.cardRow {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.cardNumber {
+
+    height: 25px;
+    margin-top: 28px;
+    margin-bottom: 35px;
+
+    font-family: 'Roboto', serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 21px;
+    line-height: 25px;
+    color: #000000;
+}
+
+.cardDate {
+    font-family: 'Roboto', serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 14px;
+    color: #000000;
+}

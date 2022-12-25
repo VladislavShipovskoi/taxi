@@ -1,58 +1,40 @@
-import React, {useState} from "react";
+import React from "react";
 import {ReactComponent as LoftTaxiLogo} from "../../assets/images/loftTaxiLogo.svg";
-import {TextField} from "@mui/material";
-import {Link} from "react-router-dom";
-
+import {Navigate} from "react-router-dom";
+import {connect} from "react-redux";
+import {RegistrationForm} from "./forms/RegistrationForm";
 import '../../App.css';
-import styles from "./styles/Registration.module.css"
+import {registrationRequest} from "../../features/Registration/actions";
 
 
-const Registration = () => {
-    const [email, setEmail] = useState('')
-    const [name, setName] = useState('')
-    const [password, setPassword] = useState('')
-
-
-    const handleSubmitForm = (event) => {
-        event.preventDefault()
-    }
-
-    const handleChangeEmail = (event) => {
-        setEmail(event.target.value)
-    }
-
-    const handleChangeName = (event) => {
-        setName(event.target.value)
-    }
-
-    const handleChangePassword = (event) => {
-        setPassword(event.target.value)
-    }
+const Registration = ({ isLoggedIn, registration }) => {
 
     return (
-        <div className="page">
-            <div className="left-side">
-                <LoftTaxiLogo />
+        !isLoggedIn ? (
+            <div className="page">
+                <div className="left-side">
+                    <LoftTaxiLogo />
+                </div>
+                <div className="right-side">
+                    <RegistrationForm onSubmit={({ email, password, name, surname}) => {
+                        registration(email, password, name, surname)
+                    }} />
+                </div>
             </div>
-            <div className="right-side">
-                <form onSubmit={handleSubmitForm} className="form-container">
-                    <div className={`form-body ${styles.registrationFormBody}`}>
-                        <div className="title">Регистрация</div>
-                        <TextField required id="email" type="email" value={email} onChange={handleChangeEmail} label="Email" variant="standard" margin="normal" />
-                        <TextField required id="text" type="text" value={name} onChange={handleChangeName} label="Name" variant="standard" margin="normal" />
-                        <TextField required id="password" type="password" value={password}  onChange={handleChangePassword} label="Password" variant="standard" margin="normal" />
-                        <button className={`custom-button ${(!email.length || !name.length || !password.length) && 'disabled'}`} type="submit">Зарегистрироваться</button>
-                        <div className="link-wrapper">
-                            <span>Уже зарегестрированны? </span>
-                            <Link to={"/login"}>
-                                <span className="link">Войти</span>
-                            </Link>
-                        </div>
-                    </div>
-                </form>
-            </div>
-        </div>
+        ) : (
+            <Navigate to="/" replace />
+        )
     )
 }
 
-export default Registration
+const mapStateToProps = (state) => ({
+    isLoggedIn: state.auth.isLoggedIn
+})
+
+const mapDispatchToProps = (dispatch) => {
+    return {
+        registration: (email, password, name, surname) => dispatch(registrationRequest({email, password, name, surname})),
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Registration);

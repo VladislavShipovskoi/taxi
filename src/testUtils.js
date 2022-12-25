@@ -1,9 +1,9 @@
 import {configureStore} from "@reduxjs/toolkit";
-import rootReducer from "./reducers";
-import {authMiddleware} from "./middlewares/authMiddleware";
+import rootReducer from "./store/reducers";
 import {Provider} from "react-redux";
 import {render} from "@testing-library/react";
 import React from "react";
+import {sagaMiddleware} from "./store/store";
 
 
 export function renderWithProviders(
@@ -11,7 +11,7 @@ export function renderWithProviders(
     {
         store = configureStore({
             reducer: rootReducer,
-            middleware: [authMiddleware],
+            middleware: [sagaMiddleware],
         }), ...renderOptions
     } = {}
 ) {

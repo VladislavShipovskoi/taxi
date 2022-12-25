@@ -42,10 +42,10 @@ div, header, form {
   height: 100%;
   display: flex;
   flex-direction: column;
+  align-items: center;
 }
 
-.form-body > .title,
-.form-body > .title {
+.title {
   font-weight: 700;
   font-size: 30px;
   line-height: 35px;
@@ -68,7 +68,6 @@ div, header, form {
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-top: 72px;
   background: #FDBF5A;
   border-radius: 70px;
   border: none;
@@ -98,4 +97,27 @@ div, header, form {
 .link-wrapper > .link {
   color: #FDBF5A;
   cursor: pointer;
+}
+
+.formHeaderText {
+  font-family: 'Roboto', serif;
+  font-style: normal;
+  font-weight: 700;
+  font-size: 36px;
+  line-height: 42px;
+  color: #000000;
+}
+
+.formHeaderSubText {
+  margin-top: 13px;
+  font-family: 'Roboto', serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 21px;
+  color: #7B7B7B;
+}
+
+.containerWithPadding {
+  padding: 40px;
 }

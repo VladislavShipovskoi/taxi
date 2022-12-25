@@ -1,150 +1,18 @@
+.cardContainer {
+    display: flex;
+    flex-direction: row;
+    gap: 80px;
+    justify-content: space-between;
+}
+
 .profileFormContainer {
     padding: 59px 44px 67px 44px;
 }
 
-.registrationFormBody {
-    width: 800px;
-    margin-top: 55px;
-    align-items: center;
-    display: flex;
-}
-
-.formHeader {
+.formHeaderContainer {
     text-align: center;
 }
 
-.formHeaderText {
-    font-family: 'Roboto', serif;
-    font-style: normal;
-    font-weight: 700;
-    font-size: 36px;
-    line-height: 42px;
-    color: #000000;
-}
-
-.formHeaderSubText {
-    margin-top: 13px;
-    font-family: 'Roboto', serif;
-    font-style: normal;
-    font-weight: 400;
-    font-size: 18px;
-    line-height: 21px;
-    color: #7B7B7B;
-}
-
-.saveButton {
-    width: 353px !important;
-    margin-top: 40px !important;
-}
-
-.cardContainer {
-    display: flex;
-    flex-direction: row;
-    width: 100%;
-    height: 230px;
-    justify-content: space-between;
-}
-
-.leftSide {
-    width: 355px;
-    display: flex;
-    flex-direction: column;
-}
-
-.rightSide {
-    width: 347px;
-    height: 182px;
-    background: #FFFFFF;
-    box-shadow: 0 5px 20px 2px rgba(0, 0, 0, 0.1);
-    border-radius: 10px;
-
-    padding: 18px 28px;
-}
-
-.cardDateAndCVC {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    gap: 20px;
-}
-
-.cardRow {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-}
-
-.cardNumber {
-
-    height: 25px;
-    margin-top: 28px;
-    margin-bottom: 35px;
-
-    font-family: 'Roboto', serif;
-    font-style: normal;
-    font-weight: 400;
-    font-size: 21px;
-    line-height: 25px;
-    color: #000000;
-}
-
-.cardDate {
-    font-family: 'Roboto', serif;
-    font-style: normal;
-    font-weight: 400;
-    font-size: 12px;
-    line-height: 14px;
-    color: #000000;
-}
-
-.cardLogo1 {
-    height: 33px;
-    width: 33px;
-    background-repeat: no-repeat;
-    background-position: center;
-    background-image: url("/src/assets/images/cardLogo1.svg");
-}
-
-.cardLogo2 {
-    height: 27px;
-    width: 27px;
-    background-repeat: no-repeat;
-    background-position: center;
-    background-image: url("/src/assets/images/cardLogo2.svg");
-}
-
-.cardLogo3wrapper {
-    position: relative;
-    display: flex;
-    align-items: end;
-    height: 27px;
-    width: 60px;
-}
-
-.cardLogo3_1 {
-    position: absolute;
-    top: 0;
-    right: 0;
-    height: 28px;
-    width: 28px;
-    border-radius: 15px;
-    background: #F1F1F1;
-    mix-blend-mode: multiply;
-    /*background-repeat: no-repeat;*/
-    /*background-position: center;*/
-    /*background-image: url("/src/assets/images/cardEllipse.svg");*/
-}
-
-.cardLogo3_2 {
-    height: 28px;
-    width: 28px;
-    position: absolute;
-    top: 0;
-    right: 18px;
-    border-radius: 15px;
-    background: #F1F1F1;
-    mix-blend-mode: multiply;
-    /*background-repeat: no-repeat;*/
-    /*background-position: center;*/
-    /*background-image: url("/src/assets/images/cardEllipse.svg");*/
+.toMapButton {
+    margin-top: 30px;
 }
