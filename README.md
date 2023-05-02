@@ -1,70 +1,47 @@
-# Getting Started with Create React App
+# Приложение для заказа такси.
+Проект представляет из себя очень простое приложение для заказа такси основе mapbox.
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Логин: test@test.com
+Пароль: 123123
 
-## Available Scripts
+## Работа с сервером
 
-In the project directory, you can run:
+Для получения данных - использован [Fake api](https://loft-taxi.glitch.me/).
 
-### `npm start`
+## Работа с картой
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+Для работы с картой предлагается использовать сервис [mapbox](https://www.mapbox.com/). 
+Для работы с картой вам потребуется зарегистрироваться на [mapbox](https://www.mapbox.com) и получить токен.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## Работа со стилями
 
-### `npm test`
+В приложении использовалась библиотека [Material UI](https://material-ui.com/).
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Функционал
 
-### `npm run build`
+- Без авторизации:
+  - возможность авторизоваться;
+  - При неверном логине или пароле я получу ошибку валидации;
+  - Редирект на страницу `/login` при попытке перейти на любую страницу кроме `/login`.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+- Авторизованный пользователь:
+  - Если платёжные данные не заполненны то отображается сообщение о необходимости их заполнить с ссылкой на профиль;
+  - Возможность просмотра и заполнения профиля (`/profile`);
+    - Поля `cardName`, `cardNumber`, `expDate`, `cvv` обязательны для заполнения;
+    - Поле `cardName` может содержать только буквы латинского алфавита;
+    - Поле `cardNumber` может содержать только цифры и должно иметь длину 8 символов;
+    - Поле `expDat` должно иметь формат даты;
+    - Поле `CVV` может содержать только цифры. Состоит из 3 символов;
+    - Я получаю оповещение при успешном сохранении данных карты.
+  - Выйти из аккаунта нажав кнопку "Выйти".
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+- Авторизованный пользователь с указанными платёжными данными:
+  - Возможность выбрать адрес отправления и прибытия из списка доступных.
+  - При указанных адресах отправления и прибытия я могу нажать на кнопку "Выполнить заказ".
+    - Карта переместится к точке отправления.
+    - Будет построен маршрут от адреса отправления к адресу прибытия.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+## Команды
+- `npm install` - установка зависимостей;
+- `npm run start` - запуск приложения;
+- `npm run test` - запуск тестов;
